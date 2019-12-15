@@ -7,10 +7,20 @@ public class GameObject {
     int height;
 
     public GameObject ( int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
     }
+
+    public GameObject() {
+
+    }
+
     void draw (Graphics g) {
-        g.fillRect(7, 10, 100, 100);
     }
+
+
 
     void update () {
     }

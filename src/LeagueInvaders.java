@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class LeagueInvaders {
-    final int WIDTH = 500;
-    final int HEIGHT = 800;
+    public static final int WIDTH = 500;
+    public static final int HEIGHT = 800;
     JFrame _mainFrame = null;
     GamePanel _gPanel = null;
 
