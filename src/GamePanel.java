@@ -15,11 +15,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
     Timer _timer = null;
     RocketShip _rs = null;
+    ObjectManager _om = null;
     Font titleFont = new Font( "Arial", Font.PLAIN, 48);
 
     public GamePanel() {
         _timer = new Timer( FPS_60, this);
         _rs = new RocketShip( 250, 700, 50, 50);
+        _om = new ObjectManager(_rs);
     }
 
 
@@ -31,7 +33,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     void drawGameState(Graphics g) {
         g.setColor( Color.BLACK);
         g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
-        _rs.draw(g);
+        _om.draw(g);
     }
 
     void drawEndState( Graphics g ) {
@@ -45,7 +47,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
     void UpdateGameState() {
         currentState = GAME_STATE;
-        _rs.update();
+        _om.update();
     }
 
     void UpdateEndState( ) {
@@ -86,12 +88,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            _om.addProjectile();
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             _rs.updateX( -1 );;
-            System.out.println("left");
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             _rs.updateX( 1 );;
-            System.out.println("right");
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
             _rs.updateY( -1 );;
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -109,6 +111,5 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        _rs.update();
     }
 }
